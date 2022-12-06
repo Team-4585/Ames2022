@@ -29,16 +29,21 @@ public class Ames2022TeleopDecisionMaker {
 
     if (m_TheJoystick.ballarmDownButtonPressed()){
       System.out.println("Down");
-      m_BallArm.down();
+      m_BallArm.detract();
     }
 
     if (m_TheJoystick.ballarmUpButtonPressed()){
       System.out.println("Up)");
-      m_BallArm.up();
+      m_BallArm.deploy();
     }
 
+<<<<<<< Updated upstream
     if (m_TheJoystick.ballarmDownButtonReleased() || m_TheJoystick.ballarmUpButtonReleased()){
       m_BallArm.stop();
+=======
+    if (m_weaponsJoystick.ballarmDownButtonReleased() || m_weaponsJoystick.ballarmUpButtonReleased()){
+      m_BallArm.detract();
+>>>>>>> Stashed changes
     }
 
     if(m_TheJoystick.button4Pressed()){

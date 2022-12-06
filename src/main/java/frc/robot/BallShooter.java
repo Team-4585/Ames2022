@@ -8,10 +8,9 @@ public class BallShooter extends RoboDevice{
 
 private CANSparkMax intakeMotor;
 
-private double targPosition = 2.0;
 private double intakeSpeed = 0.0;
 
-private static double positionThreshold = 0.05;
+
 
   public BallShooter(){
     super("BallShooter Sub System");
