@@ -37,7 +37,7 @@ public class WeaponsJoystick extends HuskyJoystick{
   }
 
   public Boolean button4ReleaseEvent(){
-    return buttonReleaseEvent(BUTTON_4);
+    return buttonReleaseEvent(3);
   }
 
   public Boolean button5ReleaseEvent(){
@@ -50,6 +50,32 @@ public class WeaponsJoystick extends HuskyJoystick{
 
   public Boolean button6ReleaseEvent(){
     return buttonReleaseEvent(BUTTON_6);
+  }
+
+  public Boolean button4PressEvent(){
+      return buttonPressEvent(3);
+  }
+  public Boolean ballarmUpButtonPressed(){
+    return isButtonPushed(8);
+  }
+  
+  public Boolean ballarmDownButtonPressed(){
+    return isButtonPushed(6); //Button written here is 1 less than actual button
+  }
+
+  public Boolean ballarmUpButtonReleased(){
+    return buttonReleaseEvent(8);
+  }
+  
+  public Boolean ballarmDownButtonReleased(){
+    return buttonReleaseEvent(6); //Button written here is 1 less than actual button
+  }
+  public Boolean button6Pressed(){
+    return isButtonPushed(5);
+  }
+
+  public boolean button6Released(){
+    return buttonReleaseEvent(5);
   }
 }
 
