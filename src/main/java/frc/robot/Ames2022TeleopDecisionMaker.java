@@ -27,15 +27,36 @@ public class Ames2022TeleopDecisionMaker {
     m_Chassis.setTargSideToSide(m_TheJoystick.getSideToSideValue());
     m_Chassis.setTargRotation(m_TheJoystick.getTwistValue());
 
-    if (m_TheJoystick.triggerReleaseEvent()){
-      m_BallArm.down();
+    if (m_TheJoystick.ballarmDownButtonPressed()){
       System.out.println("Down");
+      m_BallArm.down();
     }
 
-    if (m_TheJoystick.triggerPressEvent()){
-      m_BallArm.up();
+    if (m_TheJoystick.ballarmUpButtonPressed()){
       System.out.println("Up)");
+      m_BallArm.up();
     }
+
+    if (m_TheJoystick.ballarmDownButtonReleased() || m_TheJoystick.ballarmUpButtonReleased()){
+      m_BallArm.stop();
+    }
+
+    if(m_TheJoystick.button4Pressed()){
+      m_BallShooter.intake();
+    }
+
+    if(m_TheJoystick.button4Released()){
+      m_BallShooter.stopIntake();
+    }
+    
+    if(m_TheJoystick.button6Pressed()){
+      m_BallShooter.reverseIntake();
+    }
+
+    if(m_TheJoystick.button6Released()){
+      m_BallShooter.stopIntake();
+    }
+    
   }
 
   public void setChassis(Ames2022Chassis TheChassis){
@@ -53,6 +74,8 @@ public class Ames2022TeleopDecisionMaker {
   public void setBasicPIDSubSystem(BasicPID BasicPIDSys){
     m_BasicPID = BasicPIDSys;
   }
+
+
 
 
 }

@@ -6,6 +6,8 @@ public class Ames2022Joystick extends HuskyJoystick{
   private static final int Ames2022_JOYSTICK_PORT = 0;
  
   private static final int TRIGGER_BUTTON = 0;
+  private static final int BALLARM_UP = 7;
+  private static final int BALLARM_DOWN = 9;
 
   private static final double FB_DEAD_ZONE = 0.2;
   private static final double FB_LIVE_ZONE = 1.0 - FB_DEAD_ZONE;
@@ -97,4 +99,37 @@ public class Ames2022Joystick extends HuskyJoystick{
   public Boolean triggerReleaseEvent(){
     return buttonReleaseEvent(TRIGGER_BUTTON);
   }
+
+  public Boolean ballarmUpButtonPressed(){
+    return isButtonPushed(8);
+  }
+  
+  public Boolean ballarmDownButtonPressed(){
+    return isButtonPushed(6); //Button written here is 1 less than actual button
+  }
+
+  public Boolean ballarmUpButtonReleased(){
+    return buttonReleaseEvent(8);
+  }
+  
+  public Boolean ballarmDownButtonReleased(){
+    return buttonReleaseEvent(6); //Button written here is 1 less than actual button
+  }
+
+  public Boolean button4Pressed(){
+    return isButtonPushed(3);
+  }
+
+  public boolean button4Released(){
+    return buttonReleaseEvent(3);
+  }
+
+  public Boolean button6Pressed(){
+    return isButtonPushed(5);
+  }
+
+  public boolean button6Released(){
+    return buttonReleaseEvent(5);
+  }
+
 }

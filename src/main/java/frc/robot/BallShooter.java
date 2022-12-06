@@ -16,8 +16,9 @@ private static double positionThreshold = 0.05;
   public BallShooter(){
     super("BallShooter Sub System");
 
+    
 
-  //  intakeMotor = new CANSparkMax(WiringConnections.INTAKE_CONTROLLER_ID, MotorType.kBrushless);
+    intakeMotor = new CANSparkMax(WiringConnections.INTAKE_CONTROLLER_ID, MotorType.kBrushless);
   }
 
   public void Initialize(){

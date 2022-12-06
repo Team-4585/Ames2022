@@ -12,8 +12,11 @@ import frc.robot.huskylib.src.RoboDevice;
 
 
 public class BallArm extends RoboDevice{
-  private BasicPID left_motor;
-  private BasicPID right_motor;
+  private CANSparkMax left_motor;
+  private CANSparkMax right_motor;
+
+  private RelativeEncoder left_encoder;
+  private RelativeEncoder right_encoder;
 
   private double targPosition = 2.0;
   private double intakeSpeed = 0.0; 
@@ -23,10 +26,13 @@ public class BallArm extends RoboDevice{
   public BallArm(){
     super("Ball Arm Sub System");
 
-    left_motor = new BasicPID(WiringConnections.LEFT_BALL_ARM_CONTROLLER_ID);
-    right_motor = new BasicPID(WiringConnections.RIGHT_BALL_ARM_CONTROLLER_ID);
+    left_motor = new CANSparkMax(WiringConnections.LEFT_BALL_ARM_CONTROLLER_ID, MotorType.kBrushless);
+    right_motor = new CANSparkMax(WiringConnections.RIGHT_BALL_ARM_CONTROLLER_ID, MotorType.kBrushless);
+
+    left_encoder = left_motor.getEncoder();
+    right_encoder = right_motor.getEncoder();
   
-    left_motor.setSlave(right_motor);
+    //left_motor.set(right_motor);
   }
 
   public void Initialize(){
@@ -59,16 +65,27 @@ public class BallArm extends RoboDevice{
   //This moves the arm up. Change the double in setRotations() to adjust the target highest position
   public void down(){
     //Update the double for specific values
-    right_motor.setRotations(0.0);
-    
+    right_motor.set(-0.25);
+    left_motor.set(0.25);
+
+    System.out.println(right_encoder.getPosition());
   }
 
 
   //This moves the arm down. Change the double in setRotations() to adjust the target lowest position
   public void up(){
     //Update the double for specific values
-    right_motor.setRotations(10.0);
+    right_motor.set(0.25);
+    left_motor.set(-0.25);
     
+
+    System.out.println(right_encoder.getPosition());
+  }
+
+
+  public void stop(){
+    right_motor.stopMotor();;
+    left_motor.stopMotor();;
   }
 
 

@@ -2,6 +2,8 @@ package frc.robot.huskylib.src;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.*;
+import com.revrobotics.CANSparkMax;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import frc.robot.BasicPID;
 import frc.robot.WiringConnections;
@@ -21,7 +23,7 @@ public class MechanumDriveTrain extends RoboDevice{
   private double m_currentRotationSpeed = 0.0;
 
   private TalonSRX m_leftFrontController;
-  private BasicPID m_leftRearController;
+  private CANSparkMax m_leftRearController;
   private TalonSRX m_rightFrontController;
   private TalonSRX m_rightRearController;
 
@@ -30,7 +32,7 @@ public class MechanumDriveTrain extends RoboDevice{
     super("MechanumDriveTrain");
 
     m_leftFrontController = new TalonSRX(leftFrontID);
-    m_leftRearController = new BasicPID(leftRearID);
+    m_leftRearController = new CANSparkMax(leftRearID, MotorType.kBrushless);
     //m_leftRearController = new BasicPID(WiringConnections.LEFT_REAR_CONTROLLER_ID);
     m_rightFrontController = new TalonSRX(rightFrontID);
     m_rightRearController = new TalonSRX(rightRearID);
@@ -71,7 +73,7 @@ public class MechanumDriveTrain extends RoboDevice{
     double ratioVal = Math.max(Math.abs(useForwardBackwardSpeed) + Math.abs(useSideToSideSpeed) + Math.abs(useRotationSpeed), 1.0);
 
     m_leftFrontController.set(ControlMode.PercentOutput, (useForwardBackwardSpeed + useSideToSideSpeed + useRotationSpeed) / ratioVal);
-    m_leftRearController.setRotations(useForwardBackwardSpeed*10/*(useForwardBackwardSpeed - useSideToSideSpeed + useRotationSpeed) / ratioVal)*/); 
+    m_leftRearController.set(0.745*((useForwardBackwardSpeed - useSideToSideSpeed + useRotationSpeed) / ratioVal)); 
     m_rightFrontController.set(ControlMode.PercentOutput, (useForwardBackwardSpeed - useSideToSideSpeed - useRotationSpeed) / ratioVal);
     m_rightRearController.set(ControlMode.PercentOutput, (useForwardBackwardSpeed + useSideToSideSpeed - useRotationSpeed) / ratioVal);
 

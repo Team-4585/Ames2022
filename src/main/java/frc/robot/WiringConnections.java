@@ -65,7 +65,7 @@ public final class WiringConnections {
   public static final int LEFT_BALL_ARM_CONTROLLER_ID = CAN_CHANNEL_4;
   public static final int RIGHT_BALL_ARM_CONTROLLER_ID = CAN_CHANNEL_5;
   public static final int BALL_SHOOTER_CONTROLLER_ID = CAN_CHANNEL_6;
-  //public static final int INTAKE_CONTROLLER_ID = CAN_CHANNEL_9;
+  public static final int INTAKE_CONTROLLER_ID = CAN_CHANNEL_9;
 
 
 }
